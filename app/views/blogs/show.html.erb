@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @blog.description %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @blog.tag %>
+</p>
+
+<%#= link_to 'Edit', edit_blog_path(@blog) %>
+<!--<%#= link_to 'Back', blogs_path %>-->
+<table style="width:200px">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Body</th>
+  </tr>
+
+  <tbody>
+  <%@blog_comments.each do |comment| %>
+      <tr>
+        <td><%=comment.name %></td></br>
+        <td><%= comment.body %></td>
+      </tr>
+  <%	end %>
+  </tbody>
+</table>
+<%=form_for ([@blog, @comment]) do |f| %>
+
+    <div class = "field">
+      name:<%f.label :name %>
+      <%=f.text_field :name %>
+    </div>
+    <div class="field">
+      body:<% f.label :body %>
+      <%=f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
